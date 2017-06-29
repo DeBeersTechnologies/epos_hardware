@@ -12,6 +12,13 @@
       <inertia ixx="1" iyy="1" izz="1" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
+  <link name="link3">
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1" iyy="1" izz="1" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
   <joint name="test_joint" type="revolute">
     <parent link="link1"/>
     <child link="link2"/>
@@ -19,10 +26,24 @@
   <transmission name="test_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="test_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="test_joint_actuator">
-      <mechanicalReduction>1000</mechanicalReduction>
+      <mechanicalReduction>62</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <joint name="test_joint_2" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+  </joint>
+  <transmission name="test_joint_2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="test_joint_2">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint_actuator_2">
+      <mechanicalReduction>62</mechanicalReduction>
     </actuator>
   </transmission>
 </robot>
